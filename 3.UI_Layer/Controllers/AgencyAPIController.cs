@@ -45,7 +45,7 @@ namespace _3.UI_Layer.Controllers
         }
 
         [HttpPut]
-        [Route("editVacancyDetails")]
+        [Route("updateVacancyDetails")]
         public IHttpActionResult editVacancy( Vacancy updVac ) 
         { 
             var res = _vacancyDataService.UpdateVacancy(updVac);

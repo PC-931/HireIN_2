@@ -14,6 +14,7 @@ namespace _3.UI_Layer.Controllers
         private HttpClient _httpClient;
         private List<Vacancy> vacList;
         private Vacancy vac;
+        private List<Applicant> applList;
 
         public AgencyUIController()
         {
@@ -21,6 +22,7 @@ namespace _3.UI_Layer.Controllers
             _httpClient.BaseAddress = new Uri("http://localhost:63358/");
             vacList = new List<Vacancy>();
             vac = new Vacancy();
+            applList = new List<Applicant>();
         }
 
         public ActionResult AgencyDashboard()
@@ -32,8 +34,6 @@ namespace _3.UI_Layer.Controllers
         {            
             try
             {
-                //string aid = Session["uid"].ToString();
-                //vac.AgencyId = aid;
                 var res = _httpClient.GetAsync("showAllVacancies").Result;
                 if (res.IsSuccessStatusCode)
                 {
@@ -92,7 +92,7 @@ namespace _3.UI_Layer.Controllers
         [HttpPost]
         public ActionResult editVacancy(Vacancy updVac)
         {
-            var res = _httpClient.PostAsJsonAsync<Vacancy>("editVacancyDetails", updVac).Result;
+            var res = _httpClient.PutAsJsonAsync<Vacancy>("updateVacancyDetails", updVac).Result;
             if (res.IsSuccessStatusCode)
             {
                 vac = res.Content.ReadAsAsync<Vacancy>().Result;
@@ -147,5 +147,19 @@ namespace _3.UI_Layer.Controllers
             return RedirectToAction("login", "accountui");
         }
 
+        public ActionResult ShowApplicantsApplied()
+        {
+            var res = _httpClient.GetAsync("ShowApplicants").Result;
+            if (res.IsSuccessStatusCode)
+            {
+                applList = res.Content.ReadAsAsync<List<Applicant>>().Result;
+                return View(applList);
+            }
+            else
+            {
+                TempData["err"] = "No applicant to display";
+                return View();
+            }
+        }
     }
 }

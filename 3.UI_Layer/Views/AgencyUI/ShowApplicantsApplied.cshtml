@@ -1,0 +1,40 @@
+﻿@model IEnumerable<_1.Entity_Layer.Applicant>
+
+@{
+    ViewBag.Title = "ShowApplicantsApplied";
+}
+
+<h2>Applicants Applied</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CandidateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VacancyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CandidateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VacancyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "AcceptedCandidate", new { id=item.ApplicantId }) |
+            @Html.ActionLink("Reject", "RejectedCandidate", new { id=item.ApplicantId }) 
+        </td>
+    </tr>
+}
+
+</table>
