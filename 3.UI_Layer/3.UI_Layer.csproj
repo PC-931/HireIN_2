@@ -258,6 +258,8 @@
     <Content Include="Views\CandidateUI\CandidateDashboard.cshtml" />
     <Content Include="Views\AgencyUI\createVacancy.cshtml" />
     <Content Include="Views\AgencyUI\ShowVacancy.cshtml" />
+    <Content Include="Views\AgencyUI\editVacancy.cshtml" />
+    <Content Include="Views\AgencyUI\showVacancyById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

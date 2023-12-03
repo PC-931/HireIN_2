@@ -1,32 +1,22 @@
-﻿@model List<_1.Entity_Layer.Vacancy>
+﻿@model IEnumerable<_1.Entity_Layer.Vacancy>
 
 @{
     ViewBag.Title = "ShowVacancy";
 }
 
-<h2>ShowVacancy</h2>
+<h2>Vacancy List</h2>
 
 <p>
     @Html.ActionLink("Create New", "createVacancy")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.Display("AgencyId")
-        </th>
-        <th>
-            @Html.Display("JobTitle")
-        </th>
-        <th>
-            @Html.Display("JobDescription")
-        </th>
-        <th>
-            @Html.Display("JobLocation")
-        </th>
-        <th>
-            @Html.Display("Salary")
-        </th>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.AgencyId)</th>
+        <th>@Html.DisplayNameFor(model => model.JobTitle)</th>
+        <th>@Html.DisplayNameFor(model => model.JobDescription)</th>
+        <th>@Html.DisplayNameFor(model => model.JobLocation)</th>
+        <th>@Html.DisplayNameFor(model => model.Salary)</th>
+        <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -47,9 +37,9 @@
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VacancyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VacancyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VacancyId })
+            @Html.ActionLink("Edit", "editVacancy", new { id=item.VacancyId }) |
+            @Html.ActionLink("Details", "showVacancyById", new { id=item.VacancyId }) |
+            @Html.ActionLink("Delete", "deleteVacancyById", new { id=item.VacancyId })
         </td>
     </tr>
 }

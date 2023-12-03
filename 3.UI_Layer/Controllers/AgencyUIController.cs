@@ -13,12 +13,14 @@ namespace _3.UI_Layer.Controllers
     {
         private HttpClient _httpClient;
         private List<Vacancy> vacList;
+        private Vacancy vac;
 
         public AgencyUIController()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("http://localhost:63358/");
             vacList = new List<Vacancy>();
+            vac = new Vacancy();
         }
 
         public ActionResult AgencyDashboard()
@@ -27,48 +29,21 @@ namespace _3.UI_Layer.Controllers
         }
 
         public ActionResult ShowVacancy() 
-        {
-            //try
-            //{
-            //    var res = _httpClient.GetAsync("showAllVacancies").Result;
-            //    if (res.IsSuccessStatusCode)
-            //    {
-            //        var q = res.Content.ReadAsAsync<List<Vacancy>>().Result;
-            //        vacList = q.ToList();
-            //        if (vacList.Count > 0)
-            //        {
-            //            return View(vacList);
-            //        }
-            //        else
-            //        {
-            //            TempData["err"] = "Please first create vacancy to view";
-            //            return View(vacList);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        TempData["err"] = $"Error: {res.StatusCode} - {res.ReasonPhrase}";
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    TempData["err"] = ex.Message;
-            //}
-
+        {            
             try
             {
-                string agentId = (string)Session["aid"];
-
+                //string aid = Session["uid"].ToString();
+                //vac.AgencyId = aid;
                 var res = _httpClient.GetAsync("showAllVacancies").Result;
                 if (res.IsSuccessStatusCode)
                 {
                     vacList = res.Content.ReadAsAsync<List<Vacancy>>().Result;
 
-                    var q = from vac in vacList
-                            where vac.AgencyId == agentId
-                            select vac;
+                    //var q = from v in vacList
+                    //        where v.AgencyId == vac.AgencyId
+                    //        select v;
 
-                    return View(q);
+                    return View(vacList);
                 }
                 else
                 {
@@ -80,6 +55,8 @@ namespace _3.UI_Layer.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+
 
         [HttpGet]
         public ActionResult createVacancy()
@@ -103,5 +80,72 @@ namespace _3.UI_Layer.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult editVacancy(int id)
+        {
+            var res = _httpClient.GetAsync("getVacancy/" + id).Result;
+            vac = res.Content.ReadAsAsync<Vacancy>().Result;
+            return View(vac);
+        }
+
+        [HttpPost]
+        public ActionResult editVacancy(Vacancy updVac)
+        {
+            var res = _httpClient.PostAsJsonAsync<Vacancy>("editVacancyDetails", updVac).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                vac = res.Content.ReadAsAsync<Vacancy>().Result;
+                return RedirectToAction("ShowVacancy");
+            }
+            else
+            {
+                TempData["err"] = "Some error occured! Please try again";
+                return View();
+            }
+        }
+
+
+        public ActionResult showVacancyById( int id )
+        {
+            try
+            {
+                var res = _httpClient.GetAsync("getVacancy/"+ id).Result;
+                vac = res.Content.ReadAsAsync<Vacancy>().Result;
+                if (vac != null)
+                {
+                    return View(vac);
+                }
+                else
+                {
+                    TempData["err"] = "record not found!!!";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ActionResult deleteVacancyById( int id )
+        {
+            var res = _httpClient.DeleteAsync("removeVacancy/" + id).Result;
+            if(res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("showvacancy");
+            }
+            else
+            {
+                return RedirectToAction("showVacancy");
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("login", "accountui");
+        }
+
     }
 }
