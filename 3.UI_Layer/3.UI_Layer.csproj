@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AccountUIController.cs" />
     <Compile Include="Controllers\AgencyAPIController.cs" />
     <Compile Include="Controllers\AgencyUIController.cs" />
+    <Compile Include="Controllers\CandidateAPIController.cs" />
     <Compile Include="Controllers\CandidateUIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -260,6 +261,10 @@
     <Content Include="Views\AgencyUI\ShowVacancy.cshtml" />
     <Content Include="Views\AgencyUI\editVacancy.cshtml" />
     <Content Include="Views\AgencyUI\showVacancyById.cshtml" />
+    <Content Include="Views\CandidateUI\showVacancyToCandidate.cshtml" />
+    <Content Include="Views\CandidateUI\CandidateApplied.cshtml" />
+    <Content Include="Views\CandidateUI\AppliedApplicantStatus.cshtml" />
+    <Content Include="Views\CandidateUI\vacancyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

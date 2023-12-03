@@ -13,12 +13,12 @@ namespace _1.Entity_Layer
         public int ApplicantId { get; set; }
 
         [Required]
-        public int CandidateId { get; set; }
+        public string CandidateId { get; set; }
 
         [Required]
         public int VacancyId { get; set; }
 
         [Required]
-        public int Status { get; set; }
+        public string Status { get; set; }
     }
 }

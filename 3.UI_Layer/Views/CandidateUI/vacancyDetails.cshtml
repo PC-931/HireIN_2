@@ -1,0 +1,57 @@
+﻿@model _1.Entity_Layer.Vacancy
+
+@{
+    ViewBag.Title = "vacancyDetails";
+}
+
+<h2>Vacancy Details</h2>
+
+<div>
+    <h4>Vacancy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AgencyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgencyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Go Back", "showVacancyToCandidate")
+</p>

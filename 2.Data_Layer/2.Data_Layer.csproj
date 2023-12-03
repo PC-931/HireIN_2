@@ -119,10 +119,21 @@
     <Compile Include="Migrations\202312030725305_vacancyAgencyIdChangedToString.designer.cs">
       <DependentUpon>202312030725305_vacancyAgencyIdChangedToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312031738398_applicantTableAddedStatus.cs" />
+    <Compile Include="Migrations\202312031738398_applicantTableAddedStatus.designer.cs">
+      <DependentUpon>202312031738398_applicantTableAddedStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312031742250_applicantTableChangedToStringCandidateId.cs" />
+    <Compile Include="Migrations\202312031742250_applicantTableChangedToStringCandidateId.designer.cs">
+      <DependentUpon>202312031742250_applicantTableChangedToStringCandidateId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repo\IApplicant.cs" />
     <Compile Include="Repo\IUser.cs" />
     <Compile Include="Repo\IVacancy.cs" />
+    <Compile Include="Services\ApplicantDataService.cs" />
+    <Compile Include="Services\ApplicantServices.cs" />
     <Compile Include="Services\IUserDataServices.cs" />
     <Compile Include="Services\UserDataService.cs" />
     <Compile Include="Services\UserServices.cs" />
@@ -148,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312030725305_vacancyAgencyIdChangedToString.resx">
       <DependentUpon>202312030725305_vacancyAgencyIdChangedToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312031738398_applicantTableAddedStatus.resx">
+      <DependentUpon>202312031738398_applicantTableAddedStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312031742250_applicantTableChangedToStringCandidateId.resx">
+      <DependentUpon>202312031742250_applicantTableChangedToStringCandidateId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
