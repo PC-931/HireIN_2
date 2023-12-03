@@ -15,7 +15,6 @@ namespace _3.UI_Layer.Controllers
         private AppDbContext db;
         private HttpClient client;
 
-
         public AccountUIController()
         {
             db = new AppDbContext();
@@ -36,6 +35,7 @@ namespace _3.UI_Layer.Controllers
             if (res.IsSuccessStatusCode)
             {
                 User data = res.Content.ReadAsAsync<User>().Result;
+                Session["uid"] = data.Id;
                 if (data.Role.ToLower() == "agency")
                 {
                     return RedirectToAction("AgencyDashboard", "AgencyUI" , data);
@@ -51,7 +51,6 @@ namespace _3.UI_Layer.Controllers
                 return View();
             }
         }
-
 
         [HttpGet]
         public ActionResult Register()

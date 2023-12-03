@@ -1,0 +1,57 @@
+﻿@model List<_1.Entity_Layer.Vacancy>
+
+@{
+    ViewBag.Title = "ShowVacancy";
+}
+
+<h2>ShowVacancy</h2>
+
+<p>
+    @Html.ActionLink("Create New", "createVacancy")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Display("AgencyId")
+        </th>
+        <th>
+            @Html.Display("JobTitle")
+        </th>
+        <th>
+            @Html.Display("JobDescription")
+        </th>
+        <th>
+            @Html.Display("JobLocation")
+        </th>
+        <th>
+            @Html.Display("Salary")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VacancyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VacancyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VacancyId })
+        </td>
+    </tr>
+}
+
+</table>

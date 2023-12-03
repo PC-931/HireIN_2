@@ -13,7 +13,7 @@ namespace _1.Entity_Layer
         public int VacancyId { get; set; }
 
         [Required]
-        public int AgencyId { get; set; }
+        public string AgencyId { get; set; }
 
         [Required]
         public string JobTitle { get; set; }

@@ -115,12 +115,19 @@
     <Compile Include="Migrations\202312021749278_new db.designer.cs">
       <DependentUpon>202312021749278_new db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312030725305_vacancyAgencyIdChangedToString.cs" />
+    <Compile Include="Migrations\202312030725305_vacancyAgencyIdChangedToString.designer.cs">
+      <DependentUpon>202312030725305_vacancyAgencyIdChangedToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\IUser.cs" />
+    <Compile Include="Repo\IVacancy.cs" />
     <Compile Include="Services\IUserDataServices.cs" />
     <Compile Include="Services\UserDataService.cs" />
     <Compile Include="Services\UserServices.cs" />
+    <Compile Include="Services\VacancyDataService.cs" />
+    <Compile Include="Services\VacancyServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\1.Entity_Layer\1.Entity_Layer.csproj">
@@ -138,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312021749278_new db.resx">
       <DependentUpon>202312021749278_new db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312030725305_vacancyAgencyIdChangedToString.resx">
+      <DependentUpon>202312030725305_vacancyAgencyIdChangedToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
