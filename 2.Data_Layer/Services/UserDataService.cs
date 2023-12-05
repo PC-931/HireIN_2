@@ -28,5 +28,12 @@ namespace _2.Data_Layer.Services
                 return false;
             }
         }
+
+        public User ShowDetails(string id)
+        {
+            User u = userServices.ReadById(id);
+            return u;
+        }
+
     }
 }

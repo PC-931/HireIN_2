@@ -4,37 +4,37 @@
     ViewBag.Title = "AppliedApplicantStatus";
 }
 
-<h2>Applicantion Status</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CandidateId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VacancyId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<div class="container mt-5">
+    <h2>Status of Applied Applications</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CandidateId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VacancyId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-    </tr>
-}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CandidateId)</th>
+                <th>@Html.DisplayNameFor(model => model.VacancyId)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CandidateId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.VacancyId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            @Html.ActionLink("Show Vacancy", "showVacancyToCandidate", new { id = item.VacancyId }, new { @class = "btn btn-primary" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-</table>
-<div>
-    @Html.ActionLink("Go to Dashboard", "CandidateDashboard")
+    <p>
+        @Html.ActionLink("Go to Dashboard", "CandidateDashboard", null, new { @class = "btn btn-secondary" })
+    </p>
 </div>

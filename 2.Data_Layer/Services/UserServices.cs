@@ -58,6 +58,19 @@ namespace _2.Data_Layer.Services
             }
         }
 
+        public User ReadById(string id)
+        {
+            var user = _appDbContext.Users.Find(id);
+            if (user != null )
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<User> ReadAll()
         {
             List<User> users = new List<User>();

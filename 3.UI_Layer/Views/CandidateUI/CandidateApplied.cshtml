@@ -2,11 +2,15 @@
 @{
     ViewBag.Title = "CandidateApplied";
 }
+<div class="container mt-5">
+    <h2>Applied</h2>
 
-<h2>Applied Successfully</h2>
+    <div class="alert alert-success" role="alert">
+        <p>You have successfully applied for the job.</p>
+    </div>
 
-<p>You have applied for the vacancy successfully</p>
-
-<div>
-    @Html.ActionLink("Go to Dashboard", "CandidateDashboard")
+    <p>
+        @Html.ActionLink("Back to Vacancy List", "showVacancyToCandidate", null, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Back to Dashboard", "candidateDashboard", null, new { @class = "btn btn-secondary" })
+    </p>
 </div>

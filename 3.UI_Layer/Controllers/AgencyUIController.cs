@@ -208,5 +208,25 @@ namespace _3.UI_Layer.Controllers
                 return RedirectToAction("ShowApplicantsApplied");
             }
         }
+
+       // ShowCandidateDetails
+       public ActionResult ShowCandidateDetails(string id)
+        {
+            var res = _httpClient.GetAsync("showUserDetails/" + id).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                User u = res.Content.ReadAsAsync<User>().Result;
+                if (u != null)
+                {
+                    return View(u);
+                }
+                else
+                {
+                    TempData["err"] = "User not found";
+                }
+            }
+            return View();
+        }
+         //   ShowVacancyDetails
     }
 }

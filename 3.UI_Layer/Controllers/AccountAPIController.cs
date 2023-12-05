@@ -40,5 +40,19 @@ namespace _3.UI_Layer.Controllers
                 return BadRequest("User not found");
             }            
         }
+
+        [Route("showUserDetails/{id}")]
+        public IHttpActionResult AccountDetails(string id)
+        {
+            var res = userDataService.ShowDetails(id);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return BadRequest("User Details not found!!!");
+            }
+        }
     }
 }

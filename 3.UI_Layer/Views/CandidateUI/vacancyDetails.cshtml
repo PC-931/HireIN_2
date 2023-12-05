@@ -4,54 +4,25 @@
     ViewBag.Title = "vacancyDetails";
 }
 
-<h2>Vacancy Details</h2>
-
-<div>
-    <h4>Vacancy</h4>
+<div class="container mt-5">
+    <h2 class="text-center">Vacancy Details</h2>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AgencyId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AgencyId)
-        </dd>
+    <dl class="row">
+        <dt class="col-sm-3">Job Title:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.JobTitle)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JobTitle)
-        </dt>
+        <dt class="col-sm-3">Job Description:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.JobDescription)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.JobTitle)
-        </dd>
+        <dt class="col-sm-3">Job Location:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.JobLocation)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JobDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JobDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.JobLocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JobLocation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-
+        <dt class="col-sm-3">Salary:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Salary)</dd>
     </dl>
-</div>
-<div>
-    @Html.ActionLink("Go Back", "showVacancyToCandidate")
+
+    <div class="text-center">
+        @Html.ActionLink("Go Back to List", "showVacancyToCandidate", new { @class = "btn btn-primary" })
+    </div>
 </div>
