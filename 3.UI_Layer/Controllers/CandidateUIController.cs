@@ -1,9 +1,7 @@
 ﻿using _1.Entity_Layer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
 
 namespace _3.UI_Layer.Controllers
@@ -32,8 +30,6 @@ namespace _3.UI_Layer.Controllers
         {
             try
             {
-                //string aid = Session["uid"].ToString();
-                //vac.AgencyId = aid;
                 var res = _httpClient.GetAsync("showAllVacancies").Result;
                 if (res.IsSuccessStatusCode)
                 {
@@ -58,7 +54,7 @@ namespace _3.UI_Layer.Controllers
             appl.CandidateId = (string)Session["uid"];
             appl.VacancyId = vid;
 
-            var res = _httpClient.PostAsJsonAsync<Applicant>("ApplyVacancy", appl).Result;
+            var res = _httpClient.PostAsJsonAsync<Applicant>("applicantAppliedToVacancy", appl).Result;
             if(res.IsSuccessStatusCode)
             {
                 return View();
@@ -67,21 +63,6 @@ namespace _3.UI_Layer.Controllers
             {
                 TempData["err"] = "Some error occured! Try again";
                 return RedirectToAction("showVacancyToCandidate");
-            }
-        }
-
-        public ActionResult AppliedApplicantStatus()
-        {
-            var res = _httpClient.GetAsync("ShowApplicants").Result;
-            if (res.IsSuccessStatusCode)
-            {
-                applList = res.Content.ReadAsAsync<List<Applicant>>().Result;
-                return View(applList);
-            }
-            else
-            {
-                TempData["err"] = "Some error occured";
-                return RedirectToAction("CandidateDashboard");
             }
         }
 
@@ -100,5 +81,21 @@ namespace _3.UI_Layer.Controllers
             }
 
         }
+
+        public ActionResult AppliedApplicantStatus()
+        {
+            var res = _httpClient.GetAsync("showAllApplicants").Result;
+            if (res.IsSuccessStatusCode)
+            {
+                applList = res.Content.ReadAsAsync<List<Applicant>>().Result;
+                return View(applList);
+            }
+            else
+            {
+                TempData["err"] = "Some error occured";
+                return RedirectToAction("CandidateDashboard");
+            }
+        }
+              
     }
 }

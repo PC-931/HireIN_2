@@ -11,7 +11,8 @@
 </p>
 <table class="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.AgencyId)</th>
+        <th>@Html.DisplayNameFor(model => model.VacancyId)</th>
+        @*<th>@Html.DisplayNameFor(model => model.AgencyId)</th>*@
         <th>@Html.DisplayNameFor(model => model.JobTitle)</th>
         <th>@Html.DisplayNameFor(model => model.JobDescription)</th>
         <th>@Html.DisplayNameFor(model => model.JobLocation)</th>
@@ -21,21 +22,12 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AgencyId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
+        <td>    @Html.DisplayFor(modelItem => item.VacancyId)       </td>
+        @*<td>    @Html.DisplayFor(modelItem => item.AgencyId)        </td>*@
+        <td>    @Html.DisplayFor(modelItem => item.JobTitle)        </td>
+        <td>    @Html.DisplayFor(modelItem => item.JobDescription)  </td>
+        <td>    @Html.DisplayFor(modelItem => item.JobLocation)     </td>
+        <td>    @Html.DisplayFor(modelItem => item.Salary)          </td>
         <td>
             @Html.ActionLink("Edit", "editVacancy", new { id=item.VacancyId }) |
             @Html.ActionLink("Details", "showVacancyById", new { id=item.VacancyId }) |

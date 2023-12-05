@@ -15,6 +15,7 @@ namespace _3.UI_Layer.Controllers
         private List<Vacancy> vacList;
         private Vacancy vac;
         private List<Applicant> applList;
+        private Applicant appl;
 
         public AgencyUIController()
         {
@@ -23,6 +24,7 @@ namespace _3.UI_Layer.Controllers
             vacList = new List<Vacancy>();
             vac = new Vacancy();
             applList = new List<Applicant>();
+            appl = new Applicant();
         }
 
         public ActionResult AgencyDashboard()
@@ -55,7 +57,6 @@ namespace _3.UI_Layer.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
 
 
         [HttpGet]
@@ -95,7 +96,6 @@ namespace _3.UI_Layer.Controllers
             var res = _httpClient.PutAsJsonAsync<Vacancy>("updateVacancyDetails", updVac).Result;
             if (res.IsSuccessStatusCode)
             {
-                vac = res.Content.ReadAsAsync<Vacancy>().Result;
                 return RedirectToAction("ShowVacancy");
             }
             else
@@ -111,9 +111,9 @@ namespace _3.UI_Layer.Controllers
             try
             {
                 var res = _httpClient.GetAsync("getVacancy/"+ id).Result;
-                vac = res.Content.ReadAsAsync<Vacancy>().Result;
-                if (vac != null)
+                if (res.IsSuccessStatusCode)
                 {
+                    vac = res.Content.ReadAsAsync<Vacancy>().Result;
                     return View(vac);
                 }
                 else
@@ -137,19 +137,14 @@ namespace _3.UI_Layer.Controllers
             }
             else
             {
+                TempData["err"] = "Delettion unsuccessful";
                 return RedirectToAction("showVacancy");
             }
         }
 
-        public ActionResult Logout()
-        {
-            Session.Clear();
-            return RedirectToAction("login", "accountui");
-        }
-
         public ActionResult ShowApplicantsApplied()
         {
-            var res = _httpClient.GetAsync("ShowApplicants").Result;
+            var res = _httpClient.GetAsync("showAllApplicants").Result;
             if (res.IsSuccessStatusCode)
             {
                 applList = res.Content.ReadAsAsync<List<Applicant>>().Result;
@@ -159,6 +154,58 @@ namespace _3.UI_Layer.Controllers
             {
                 TempData["err"] = "No applicant to display";
                 return View();
+            }
+        }
+
+        public ActionResult CandateAccepted(int id)
+        {
+            var res = _httpClient.GetAsync("getApplicantDetails/"+id).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                appl = res.Content.ReadAsAsync<Applicant>().Result;
+                appl.Status = "Accepted";
+
+                var sendData = _httpClient.PutAsJsonAsync<Applicant>("updateAppliedCandidateStatus", appl).Result;
+                if(sendData.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("ShowApplicantsApplied");
+                }
+                else
+                {
+                    TempData["err"] = "Failed to accept candidate try again!";
+                    return RedirectToAction("ShowApplicantsApplied");
+                }
+            }
+            else
+            {
+                TempData["err"] = "Applicant isn't found";
+                return RedirectToAction("ShowApplicantsApplied");
+            }
+        }
+
+        public ActionResult CandateRejected(int id)
+        {
+            var res = _httpClient.GetAsync("getApplicantDetails/" + id).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                appl = res.Content.ReadAsAsync<Applicant>().Result;
+                appl.Status = "Rejected";
+
+                var sendData = _httpClient.PutAsJsonAsync<Applicant>("updateAppliedCandidateStatus", appl).Result;
+                if (sendData.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("ShowApplicantsApplied");
+                }
+                else
+                {
+                    TempData["err"] = "Failed to accept candidate try again!";
+                    return RedirectToAction("ShowApplicantsApplied");
+                }
+            }
+            else
+            {
+                TempData["err"] = "Applicant isn't found";
+                return RedirectToAction("ShowApplicantsApplied");
             }
         }
     }

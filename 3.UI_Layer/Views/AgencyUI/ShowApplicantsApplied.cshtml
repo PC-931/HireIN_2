@@ -4,7 +4,8 @@
     ViewBag.Title = "ShowApplicantsApplied";
 }
 
-<h2>Applicants Applied</h2>
+<h2>Applicants List</h2>
+
 <table class="table">
     <tr>
         <th>
@@ -31,10 +32,14 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Accept", "AcceptedCandidate", new { id=item.ApplicantId }) |
-            @Html.ActionLink("Reject", "RejectedCandidate", new { id=item.ApplicantId }) 
+            @Html.ActionLink("Accepted", "CandateAccepted", new { id=item.ApplicantId }) |
+            @Html.ActionLink("Rejected", "CandateRejected", new { id=item.ApplicantId }) 
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("Go To Dashboard", "AgencyDashboard")
+</div>
