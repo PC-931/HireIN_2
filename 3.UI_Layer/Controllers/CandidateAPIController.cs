@@ -21,35 +21,35 @@ namespace _3.UI_Layer.Controllers
             _applicantDataService = new ApplicantDataService();
         }
 
-        [Route("viewAllVacancies")]
-        public IHttpActionResult ShowAllVacancy()
-        {
-            var res = _vacancyDataService.ListAllVacancy();
-            if (res.Count > 0)
-            {
-                return Ok(res);
-            }
-            else
-            {
-                return BadRequest("No vacancy posted yet");
-            }
-        }
+        //[Route("viewAllVacancies")]
+        //public IHttpActionResult ShowAllVacancy()
+        //{
+        //    var res = _vacancyDataService.ListAllVacancy();
+        //    if (res.Count > 0)
+        //    {
+        //        return Ok(res);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("No vacancy posted yet");
+        //    }
+        //}
 
-        [Route("ApplyVacancy")]
-        public IHttpActionResult AppliedCandidate(Applicant appl)
-        {                        
-            var res = _applicantDataService.CreateApplicant(appl);
-            if (res)
-                return Ok();
-            else
-                return BadRequest();
-        }
+        //[Route("ApplyVacancy")]
+        //public IHttpActionResult AppliedCandidate(Applicant appl)
+        //{                        
+        //    var res = _applicantDataService.CreateApplicant(appl);
+        //    if (res)
+        //        return Ok();
+        //    else
+        //        return BadRequest();
+        //}
 
-        [Route("ShowApplicants")]
-        public IHttpActionResult ApplcationDetails()
-        {
-            var res = _applicantDataService.ListAllApplicant();
-            return Ok(res);
-        }
+        //[Route("ShowApplicants")]
+        //public IHttpActionResult ApplcationDetails()
+        //{
+        //    var res = _applicantDataService.ListAllApplicant();
+        //    return Ok(res);
+        //}
     }
 }

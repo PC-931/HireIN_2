@@ -179,9 +179,11 @@
     <Compile Include="Controllers\AccountUIController.cs" />
     <Compile Include="Controllers\AgencyAPIController.cs" />
     <Compile Include="Controllers\AgencyUIController.cs" />
+    <Compile Include="Controllers\ApplicantAPIController.cs" />
     <Compile Include="Controllers\CandidateAPIController.cs" />
     <Compile Include="Controllers\CandidateUIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VacancyAPIController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

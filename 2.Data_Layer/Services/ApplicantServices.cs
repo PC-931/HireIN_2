@@ -62,7 +62,7 @@ namespace _2.Data_Layer.Services
 
         public bool Update(Applicant updAppl)
         {
-            appl = _appDbContext.Applicants.Find(appl);
+            appl = _appDbContext.Applicants.Find(updAppl.ApplicantId);
 
             if (appl != null)
             {
